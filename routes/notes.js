@@ -1,4 +1,4 @@
-const router = require(express).Router();
+const router = require("express").Router();
 const { v4: uuidv4 } = require("uuid");
 const {
   readFromFile,
@@ -26,3 +26,5 @@ router.post("/", (req, res) => {
     res.error(`Error in adding note`);
   }
 });
+
+module.exports = router;
