@@ -6,18 +6,20 @@ const {
   writeToFile,
 } = require("../helpers/fsUtils");
 
+// GET route to retrieve existing notes to populate them in the sidebar
 router.get("/", (req, res) => {
-  readFromFile(".db/db.json").then((data) => res.json(JSON.parse(data)));
+  readFromFile("./db/db.json").then((data) => res.json(JSON.parse(data)));
 });
 
+// POST route to add note to db.json file
 router.post("/", (req, res) => {
-  const { noteTitle, noteText } = req.body;
+  const { title, text } = req.body;
 
   if (req.body) {
     const newNote = {
-      noteTitle,
-      noteText,
-      note_id: uuidv4(),
+      title,
+      text,
+      id: uuidv4(),
     };
 
     readAndAppend(newNote, "./db/db.json");
